@@ -1,0 +1,22 @@
+{% extends "guest/base.html" %}
+{% block title %} Register {% endblock %}
+{% block page_content %}
+<br><br><br><br><br>
+
+<div class="container">
+
+    <h1 class="heading"><span>R</span>egister</h1>
+
+    <form action="{% url 'register_user' %}" method="POST" style="color: black; visibility: visible;">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+
+
+
+        <input type="submit" value="Submit" class="btn btn-secondary">
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "guest/base.html" %}
+{% load static %}
+{% block title %}Make Reservation{% endblock %}
+{% block page_content %}
+
+<section>
+
+
+    <br><br><br><br><br>
+    {% if error_message is not None %}
+    <div class="alert alert-danger" role="alert" style="height: 50px; font-size: 2rem;">
+        {{ error_message }}
+      
+      </div>
+    {% endif %}
+    <h1 class="heading">Make Reservation for Room <span>{{ room.room_number }}</span></h1>
+    <form method="post" action="{% url 'make_reservation' room_id=room.pk %}" style="color: black;">
+        {% csrf_token %}
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" id="start_date" required>
+        <br><br>
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" id="end_date" required>
+        <br><br>
+        <input type="submit" value="Make Reservation" class="btn">
+    </form>
+
+</section>
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

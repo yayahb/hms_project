@@ -1,0 +1,58 @@
+{% extends "guest/base.html" %}
+{% load static %}
+{% block title %} Home {% endblock %}
+{% block page_content %}
+   <link rel="stylesheet" href="{% static '/css/style.css' %}">
+
+
+<section class="home">
+
+
+    <div class="content">
+        <h3 class="heading">book your stay with <span>bab bhar</span></h3>
+    </div>
+
+    <div class="swiper-container home-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="{% static 'images/slide-12.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'images/slide-10.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'images/IMG4.PNG' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'images/img11.png' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'images/slide-11.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'images/IMG5.PNG' %}" alt=""></div>
+        </div>
+    </div>
+
+
+</section>
+
+
+
+<section class="price" id="price">
+    <br><br><br><br>
+    <h1 class="heading">ABOUT <span>US</span></h1>
+    <br><br>
+
+    <div class="container text-dark">
+        <div class="about-us-content">
+            <img src="{% static 'images/IMG5.PNG' %}" alt="About Us Image" class="about-us-image">
+            <div class="about-us-text">
+                <h1>
+                    Welcome to bab bhar, a luxurious haven in the heart of a vibrant city. More than just a hotel, bab bhar offers a seamless blend of contemporary elegance and warm hospitality. 
+                </h1>
+                
+        <br><br>
+
+        <h1>
+
+            Upon entering, you'll be welcomed by a dedicated team committed to ensuring an exceptional stay. The meticulously designed rooms and suites provide a comfortable sanctuary with modern amenities and captivating city views. Whether for business or leisure, our accommodations are tailored to meet your every need, promising a restful and rejuvenating experience. Indulge your palate in our exquisite dining establishments, where expert chefs craft a symphony of flavors using the finest ingredients. From local delicacies to international cuisine, each dish is a masterpiece that will leave you craving for more.
+        </h1>
+        <br><br>
+    
+       
+    </div>
+
+</section>
+
+
+{% endblock %}

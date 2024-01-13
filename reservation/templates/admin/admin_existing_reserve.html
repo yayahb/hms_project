@@ -1,0 +1,27 @@
+{% extends "administrator/base.html" %}
+{% load static %}
+{% block page_content %}
+
+
+<section>
+  <br><br><br><br><br>
+  <h1 class="heading">Overwrite Reservation for Room <span>{{ reservation.room.room_number }}</span></h1>
+  <br><br>
+  <h1 class="text-dark" style="font-size: 3.5rem;"><strong> CURRENT GUEST: {{ reservation.guest }}</strong></h1>
+  <br><br><br>
+  <form method="post" action="{% url 'existing_reservation' reservation.id %}">
+    {% csrf_token %}
+
+    <label for="start_date">Start Date:</label>
+    <input type="date" name="start_date" id="start_date" value="{{ reservation.start_date }}">
+
+    <label for="end_date">End Date:</label>
+    <input type="date" name="end_date" id="end_date" value="{{ reservation.end_date }}">
+
+    <br><br>
+    <input type="submit" value="Overwrite Reservation" class="btn">
+  </form>
+</section>
+
+
+{% endblock %}

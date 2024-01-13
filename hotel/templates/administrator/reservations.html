@@ -1,0 +1,68 @@
+{% extends 'administrator/base.html' %}
+{% block title %} Room Reservations {% endblock %}
+{% block page_content %}
+
+<h1 class="heading" >Hotel <span>Reservations</span></h1>
+<div class="container col-12">
+    <table class="table table-bordered text-dark writing text-center" style="color: #000;">
+        <thead style="font-size: 25px; color: #000;" >
+            <tr >
+                <th >Room Number</th>
+                <th>Room Type</th>
+                <th>Guest</th>
+                <th>Reservation Start Date</th>
+                <th>Reservation End Date</th>
+                <th>Duration</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody style="font-size: 20px; color: #000;">
+
+            {% for reservation in reservations %}
+            <tr>
+                <td>
+
+                    {{ reservation.room.room_number }}
+                </td>
+                <td>
+
+                    {{ reservation.room.room_type }}
+  
+                </td>
+
+                <td>
+     
+                    {{ reservation.guest }}
+
+                </td>
+
+                <td>
+
+                    {{ reservation.start_date }}
+
+                </td>
+                <td>
+
+                    {{ reservation.end_date }}
+
+                </td>
+
+                <td>
+                    {{ reservation.duration }} night(s)
+                </td>
+
+                <td>
+                    <a href="{% url 'admin_cancel_reservation' reservation_id=reservation.pk %}"
+                        class="card-text btn text-dark" style="background-color: red;">Cancel</a>
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

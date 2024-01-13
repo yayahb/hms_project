@@ -1,0 +1,30 @@
+{% extends "guest/base.html" %}
+{% load static %}
+{% block title %} Services {% endblock %}
+{% block page_content %}
+
+
+<section class="venue" id="venue">
+    <div class="title">
+        <br><br><br><br><br>
+        <h1 class="heading">Our <span>Services</span></h1>
+        <br>
+    </div>
+
+    <div class="venue-list">
+        {% for service in services %}
+        <div class="venue-box">
+            <img src="{{ service.image.url }}" alt="img">
+            <div class="venue-info" style="font-weight: bold;">
+                <h2>{{ service.name }}</h2>
+                <p>{{ service.price }}DH</p>
+                <p> {{ service.description }}</p>
+
+                <a href="{% url 'service_reservation' service_id=service.pk %}" class="btn fixed-bottom">Book Now</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

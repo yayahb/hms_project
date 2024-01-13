@@ -1,0 +1,48 @@
+{% extends 'administrator/base.html' %}
+{% block title %} Rooms {% endblock %}
+{% block page_content %}
+
+<h1 class="heading">Hotel <span>Rooms</span></h1>
+<div class="container col-12">
+    <table class="table table-bordered text-dark writing text-center">
+        <thead style="font-size: 25px;">
+            <tr>
+                <th>Room Number</th>
+                <th>Room Type</th>
+                <th>Reservation Status</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody style="font-size: 20px;">
+
+            {% for room in rooms %}
+            <tr>
+                <td>{{ room.room_number}}</td>
+                <td>{{ room.room_type }} </td>
+                <td>
+                    {% if room.reservation_set.exists %}
+                    <button class="btn " style="background-color: rgb(66, 56, 56);">Has Reservation</button>
+                    {% else %}
+                    <button class="btn btn-success" style="background-color: green;">No Reservation</button>
+
+                    {% endif %}
+                </td>
+
+
+                <td>
+                    <a href="{% url 'admin_make_reservation' room_id=room.pk %}" class="btn">Reserve</a>
+                </td>
+
+               
+
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

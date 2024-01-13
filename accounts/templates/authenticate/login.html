@@ -1,0 +1,42 @@
+{% extends "guest/base.html" %}
+{% block title %} Login {% endblock %}
+{% block page_content %}
+
+
+
+<br><br><br><br><br>
+{% if error is not None %}
+<div class="alert alert-danger" role="alert" style="height: 50px; font-size: 2rem;">
+  {{ error }}
+
+</div>
+{% endif %}
+<br><br><br>
+<h1 class="heading"><span>L</span>ogin</h1>
+<div class="container">
+  <form action="" method="POST" id="id-addSnippet">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="exampleInputEmail1" style="font-size: 35px;">Username</label>
+      <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter username"
+        style="height: 50px; font-size: 20px;">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="exampleInputPassword1" style="font-size: 35px;">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="Enter password"
+        style="height: 50px; font-size: 20px;">
+    </div>
+
+
+
+    <input type="submit" value="Submit" class="btn btn-secondary" style="height: 50px;">
+  </form>
+  <br><br><br><br>
+  <h1 class="text-dark">Don't have an account?</h1>
+  <a href="{% url 'register_user' %}" style="font-size: 25px;">Resigter Now</a>
+</div>
+<br><br><br>
+
+{% endblock %}

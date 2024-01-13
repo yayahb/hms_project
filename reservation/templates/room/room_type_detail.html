@@ -1,0 +1,72 @@
+{% extends "guest/base.html" %}
+{% load static %}
+{% block title %} Room Details {% endblock %}
+{% block page_content %}
+
+
+<section class="text-dark">
+    <br><br><br><br><br>
+    <h1 class="heading" >{{ room_type.name }}</h1>
+
+    <table class="table table-bordered text-dark writing text-center"style="color: black;">
+        <thead style="font-size: 25px;">
+            <tr>
+                <th>Room Number</th>
+                <th>Reservation Status</th>
+                <th>Reservation Start Date</th>
+                <th>Reservation End Date</th>
+                <th>Duration</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody style="font-size: 20px;">
+
+            {% for room in rooms %}
+            <tr>
+                <td>{{ room.room_number }}</td>
+                <td>
+                    {% if room.reservation_set.exists %}
+                    <button class="btn " style="background-color: rgb(66, 56, 56);">Reserved from</button>
+                    {% else %}
+                    <button class="btn btn-success" style="background-color: green;">No Reservation</button>
+
+                    {% endif %}
+                </td>
+                <td>
+
+                    {% for reservation in room.reservation_set.all %}
+                    {{ reservation.start_date }}
+                    <br>
+                    {% endfor %}
+
+                </td>
+                <td>
+                    {% for reservation in room.reservation_set.all %}
+                    {{ reservation.end_date }}
+                    <br>
+                    {% endfor %}
+                </td>
+                <td>
+
+                    {% for reservation in room.reservation_set.all %}
+                    {{ reservation.duration }} night(s)
+                    <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{% url 'make_reservation' room_id=room.pk %}" class="btn">Reserve</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No rooms available for this room type.</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</section>
+
+<br><br><br><br><br><br><br><br><br><br>
+{% endblock %}
