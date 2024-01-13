@@ -1,0 +1,39 @@
+{% extends "guest/base.html" %}
+{% load static %}
+{% block title %} Notifications {% endblock %}
+{% block page_content %}
+
+
+
+<section>
+  <br><br><br><br><br><br>
+  <h1 class="heading"><span>N</span>otifications</h1>
+
+
+
+
+
+
+
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+
+    <p {% if message.tags %} class="{{ message.tags }} text-dark" {% endif %}>{{ message }}</p>
+    <form action="{% url 'guest_notify' %}" method="POST">
+      {% csrf_token %}
+      <a href="{% url 'view_reservations' %}" class="btn">View Reservations</a>
+    </form>
+    <br><br>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="text-dark" style="font-size: 4rem;">You have no notification</p>
+  {% endif %}
+
+</section>
+
+
+
+
+{% endblock %}

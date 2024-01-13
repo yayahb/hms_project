@@ -1,0 +1,12 @@
+{% extends 'administrator/base.html' %}
+{% block title %} Edit Guest {% endblock %}
+{% block page_content %}
+<h1>{{ guest.username }}</h1>
+<p>Email: {{ guest.email }}</p>
+<form method="POST" action="">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+{% endblock %}

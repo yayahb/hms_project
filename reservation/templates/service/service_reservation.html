@@ -1,0 +1,26 @@
+{% extends "guest/base.html" %}
+{% load static %}
+{% block title %} Book Service {% endblock %}
+{% block page_content %}
+
+<section>
+
+
+    <br><br><br><br><br>
+    <h1 class="heading">Book our <span>{{ service.name }} service</span></h1>
+    <form method="post" action="{% url 'service_reservation' service_id=service.pk %}">
+        {% csrf_token %}
+
+        <label for="start_date">Date:</label>
+        <input type="date" name="reservation_date" id="reservation_date" required>
+        <br><br>
+        <label for="end_date">Time:</label>
+        <input type="time" name="reservation_time" id="reservation_time" required>
+        <br><br>
+        <input type="submit" value="Book Service" class="btn">
+    </form>
+
+</section>
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "administrator/base.html" %}
+{% load static %}
+{% block title %}Make Reservation{% endblock %}
+{% block page_content %}
+
+<section>
+
+
+    <br><br><br><br><br>
+    <h1 class="heading">Make Reservation for Room <span>{{ room.room_number }}</span></h1>
+    <form method="post" action="{% url 'admin_make_reservation' room_id=room.pk %}">
+        {% csrf_token %}
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" id="start_date" required>
+        <br><br>
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" id="end_date" required>
+        <br><br>
+        <input type="submit" value="Make Reservation" class="btn">
+    </form>
+
+</section>
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends "administrator/base.html" %}
+{% block title %} Dashboard {% endblock %}
+{% block page_content %}
+
+
+<h1 class="heading"><span>Dash</span>board</h1>
+<br><br>
+
+
+<!-- Start of Row -->
+<!-- Start of Row -->
+<!-- Orders -->
+<div class="row my-3">
+  <div class="col-6">
+    <div class="card text-dark" style="height: 23rem; background-color: rgb(19, 18, 18);">
+      <h5 class="card-header" style="height: 5rem; font-size: 3rem;">NUMBER OF GUESTS</h5>
+      <div class="card-body" style="font-size: 2.5rem;">
+        <br>
+        <h5 class="card-title" style="font-size: 2.5rem; font-weight: bold; padding-left: 1rem;">{{ guests }}</h5>
+        <br>
+        <p class="card-text text-success">CURRENT</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Traffic -->
+  <div class="col-6">
+    <div class="card text-dark" style="height: 23rem; background-color: rgb(19, 18, 18);">
+      <h5 class="card-header" style="height: 5rem; font-size: 3rem;">NUMBER OF ROOMS</h5>
+      <div class="card-body" style="font-size: 2.5rem;">
+        <br>
+        <h5 class="card-title" style="font-size: 2.5rem; font-weight: bold; padding-left: 1rem;">{{ rooms }}</h5>
+        <br>
+        <p class="card-text text-success">CURRENT</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="chart-container col-6">
+    <br>
+    <canvas id="roomAvailabilityChart"></canvas>
+  </div>
+
+
+
+  <div class="chart-container col-6">
+    <canvas id="myChart"></canvas>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    // BAR CHART
+
+    var xValues = ["Single Room", "Double Room", "Triple Room", "Deluxe Room", "Executive Suite", "Presidential Suite"];
+    var yValues = [
+      '{{ single_rooms }}',
+      '{{ double_rooms }}',
+      '{{ triple_rooms }}',
+      '{{ deluxe_rooms }}',
+      '{{ executive_suite }}',
+      '{{ presidential_suite }}',
+    ];
+    var barColors = ["#801414", "#dababa", "#837824", "#801414", "#dababa", "#837824"];
+
+    new Chart("myChart", {
+      type: "bar",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 8
+          }
+        },
+        legend: { display: false },
+        title: {
+          display: true,
+          fontColor: 'white',
+          text: "Number of Rooms",
+          fontSize: 20
+        }
+      }
+
+    });
+
+
+
+
+
+
+
+    // PIE CHART
+
+    var ctx = document.getElementById("roomAvailabilityChart").getContext("2d");
+    var chart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Available Rooms', 'Unavailable Rooms'],
+        datasets: [{
+          label: 'Room Availability',
+          data: [
+            '{{ available_rooms }}',
+            '{{ unavailable_rooms }}'
+          ],
+          backgroundColor: ['#801414', '#837824'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            fontColor: 'black',
+            fontSize: 16
+          }
+        },
+
+      }
+    });
+  </script>
+
+  {% endblock %}

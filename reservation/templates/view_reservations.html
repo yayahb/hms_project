@@ -1,0 +1,61 @@
+{% extends "guest/base.html" %}
+{% load static %}
+{% block title %} View Reservations {% endblock %}
+{% block page_content %}
+
+<section>
+  <br><br><br><br><br>
+  <h1 class="heading">Your <span>Reservations</span></h1>
+
+  {% for reservation in reservations %}
+  <div class="row my-3">
+    <div class="col-12">
+      <div class="card text-dark" style="height: 33rem; background-color: rgb(255, 255, 255);">
+        <h5 class="card-header" style="height: 5rem; font-size: 3rem;">Room Reservation</h5>
+        <div class="card-body" style="font-size: 2.5rem;">
+          <h5 class="card-title" style="font-size: 2.5rem; font-weight: bold;">Room {{ reservation.room.room_number }}
+          </h5>
+          <h5 class="card-title" style="font-size: 2.5rem;">{{ reservation.room.room_type }}</h5>
+          <h5 class="card-title" style="font-size: 2.5rem;">DH{{ reservation.room.room_type.price }} per night</h5>
+          <p class="card-text text-success">Reserved from <b>{{reservation.start_date}}, {{reservation.start_time}}</b>
+            to <b>{{ reservation.end_date }}</b></p>
+
+          <a href="{% url 'update_reservation' reservation.id %}" class="card-text btn text-dark"
+            style="background-color: #ffc107;">Update</a>
+          <a href="{% url 'cancel_reservation' reservation_id=reservation.pk %}" class="card-text btn text-dark"
+            style="background-color: red;">Cancel</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <br><br><br>
+  <h1 class="text-dark" style="font-size: 3rem;"> You have no reservations...</h1>
+  {% endfor %}
+
+  {% for service in services %}
+  <div class="row my-3" >
+    <div class="col-12">
+      <div class="card text-dark" style="height: 33rem;  background-color: rgb(255, 255, 255);">
+        <h5 class="card-header" style="height: 5rem; font-size: 3rem;">Service Reservation</h5>
+        <div class="card-body" style="font-size: 2.5rem;">
+          <h5 class="card-title" style="font-size: 2.5rem; font-weight: bold;">{{ service.service.name }}</h5>
+          <h5 class="card-title" style="font-size: 2.5rem;">{{ service.service.price }}DH</h5>
+          <p class="card-text text-success">Reservation Date: <b>{{ service.reservation_date }}</b></p>
+          <p class="card-text text-success">Reservation Time: <b>{{ service.reservation_time }}</b></p>
+
+          <a href="{% url 'update_service' service.pk %}" class="card-text btn text-dark"
+            style="background-color: #ffc107;">Update</a>
+          <a href="{% url 'cancel_service' service.pk %}" class="card-text btn text-dark"
+            style="background-color: red;">Cancel</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+</section>
+
+{% endblock %}
